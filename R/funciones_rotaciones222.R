@@ -239,7 +239,7 @@ utils_flexiblePanels222 <- function(inicia_primeraVisita = 1:4,
   
   # Control
   if(!identical(sort(as.integer(unique(inicia_primeraVisita))), 1:4)) {
-    stop("El vector vctr_inicial_numVisita debe ser cualquier permutación del vector 1, 2, 3, 4, 5 en cualquier orden, por ejemplo: 3, 5, 1, 3, 2")
+    stop("El vector inicia_primeraVisita  debe ser cualquier permutación del vector 1, 2, 3, 4, 5 en cualquier orden, por ejemplo: 3, 5, 1, 3, 2")
   }
   
   bloque1 <- utils_generatePanel_222(vector_numVisita1raLetraEntrada = inicia_primeraVisita,
@@ -361,7 +361,7 @@ f_panel <- function(inicia_primeraVisita = 1:4, numTrimestres,
                                               numTrimestres)
   }
   
-  if(!identical(sort(as.integer(unique(inicia_primeraVisita))), 1:4)) stop("El vector vctr_inicial_numVisita debe ser cualquier permutación del vector 1, 2, 3, 4, 5 en cualquier orden, por ejemplo: 3, 5, 1, 3, 2")
+  if(!identical(sort(as.integer(unique(inicia_primeraVisita))), 1:4)) stop("El vector inicia_primeraVisita  debe ser cualquier permutación del vector 1, 2, 3, 4, 5 en cualquier orden, por ejemplo: 3, 5, 1, 3, 2")
   
   if(is.null(inicia_segundaVisita)) {
     inicia_segundaVisita <- df_plausibles[1,]
@@ -469,17 +469,16 @@ stop(paste0("En la segunda visita (inicia_segundaVisita) el valor debe ser NULL 
 
 ######################### Fin Función para generar esquemas rotativos 2-2-2  #####################
 
-
-
-# Escenario que usa Ecuador
-
+# 
+# 
+# # Escenario que usa Ecuador
 # escenario_Ecuador <- f_panel(inicia_primeraVisita = c(1,3,2,4),
 #                                inicia_segundaVisita = c(1,3,1,3),
 #                                numTrimestres = 40)
 # 
 # # Escenario erroneo
 # 
-# escenario_ErroneoEcuador <- f_panel(inicia_primeraVisita = c(1,3,2,4), 
+# escenario_ErroneoEcuador <- f_panel(inicia_primeraVisita = c(1,3,2,4),
 #                                inicia_segundaVisita = c(1,1,1,1),
 #                                numTrimestres = 40)
 # 
@@ -499,7 +498,7 @@ stop(paste0("En la segunda visita (inicia_segundaVisita) el valor debe ser NULL 
 # 
 # # Escenario erroneo
 # 
-# escenario_ErroneoEcuador <- f_panel(inicia_primeraVisita = c(1,3,2,4), 
+# escenario_ErroneoEcuador <- f_panel(inicia_primeraVisita = c(1,3,2,4),
 #                                       inicia_segundaVisita = c(1,1,1,1),
 #                                       numTrimestres = 40)
 # 
@@ -511,3 +510,8 @@ stop(paste0("En la segunda visita (inicia_segundaVisita) el valor debe ser NULL 
 # escenario_EcuadorSinSegundaVistia <- f_panel(inicia_primeraVisita = c(1,3,2,4),
 #                                                numTrimestres = 40)
 # 
+# 
+# 
+# escenario_Ecuador <- f_panel(inicia_primeraVisita = c("A",3,2,4),
+#                              inicia_segundaVisita = c(1,3,1,3),
+#                              numTrimestres = 40)
