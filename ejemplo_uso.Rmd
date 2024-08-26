@@ -10,7 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-
 # Panel 2-2-2
 
 ```{r}
@@ -22,7 +21,7 @@ source("panel222.R" )
 ```
 
 ```{r}
-panel_prueba1 <- panel222(n_periods = 40) # name_period = "quarter" por defecto
+panel_prueba1 <- panel222(n_periods = 40) # name_period = "month" por defecto
 prueba1 <- utils_test_contigous222(panel_prueba1)
 ```
 
@@ -45,7 +44,7 @@ source("panel500.R" )
 ```
 
 ```{r}
-panel_prueba3 <- panel500(n_periods = 40) # name_period = "quarter" por defecto
+panel_prueba3 <- panel500(n_periods = 40) # name_period = "month" por defecto
 prueba3 <- utils_test_contigous500(panel_prueba3)
 ```
 
