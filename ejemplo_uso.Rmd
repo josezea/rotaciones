@@ -1,0 +1,56 @@
+---
+title: "Vignette"
+author: "José Fernando Zea"
+date: "2024-08-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+# Panel 2-2-2
+
+```{r}
+source("utils_create_common_elements_matrix.R")
+source("utils_minimal_block222.R")
+source("utils_admissibleScenarios222.R")
+source("utils_test_contigous222.R")
+source("panel222.R" )
+```
+
+```{r}
+panel_prueba1 <- panel222(n_periods = 40) # name_period = "quarter" por defecto
+prueba1 <- utils_test_contigous222(panel_prueba1)
+```
+
+
+```{r}
+panel_prueba2 <- panel222(n_periods = 40,  name_period = "quarter")
+prueba2 <- utils_test_contigous222(panel_prueba2)
+```
+
+
+# Panel 5 - 0 - 0
+
+
+```{r}
+source("utils_create_common_elements_matrix.R")
+source("utils_row_500.R")
+source("utils_minimal_block500.R")
+source("utils_test_contigous500.R")
+source("panel500.R" )
+```
+
+```{r}
+panel_prueba3 <- panel500(n_periods = 40) # name_period = "quarter" por defecto
+prueba3 <- utils_test_contigous500(panel_prueba3)
+```
+
+
+```{r}
+panel_prueba4 <- panel500(n_periods = 40,  name_period = "quarter")
+prueba4 <- utils_test_contigous500(panel_prueba4)
+```
