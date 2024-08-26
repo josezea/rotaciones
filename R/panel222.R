@@ -1,0 +1,54 @@
+#' Generate a 5-0-0 Rotative Panel for Monthly or Quarterly Periods
+#'
+#' This function generates a 5-0-0 rotative panel for either monthly or quarterly periods.
+#'
+#' @param n_periods Integer. The number of quarters or months.
+#' @param name_period Character of length 1. It must take one of two possible values: "month" or "quarter". Default is "month".
+#'
+#' @return A data frame representing the 5-0-0 rotative panel. If `name_period` is "month", the data frame will have three sets of columns for each month in a quarter. If `name_period` is "quarter", the data frame will have one set of columns representing the quarters.
+#'
+#' @examples
+#' # Example usage:
+#' panel222(40, "month")
+#' panel500(40, "quarter")
+#'
+#' @export
+
+panel222 <- function(n_periods, name_period = "month"){
+  if (!all(name_period %in% c("month", "quarter"))) {
+    stop("Error: my_vector must take the possible values: 'month' or 'quarter'.")
+  }
+  vctr_rep1stLetterCols = 1:4
+  if(!identical(sort(as.integer(unique(vctr_rep1stLetterCols))), 1:4)) stop("El vector inicia_primeraVisita  debe ser cualquier permutación del vector 1, 2, 3, 4 en cualquier orden, por ejemplo: 4, 1, 3, 2")
+  
+  df_possibleScenarios2ndVisit <- f_admissibleScenarios222(n_periods = n_periods, 
+                                                           vctr_rep1stLetterCols = vctr_rep1stLetterCols,
+                                                           str_blockInitLetter = "A")
+  
+  vctr_rep2ndLetterCols <- df_possibleScenarios2ndVisit[1,]
+  
+  block1 <- minimal_block222(n_periods =  n_periods, vctr_rep1stLetterCols = vctr_rep1stLetterCols, 
+                             vctr_rep2ndLetterCols = vctr_rep2ndLetterCols,
+                             str_blockInitLetter = "A")
+  
+  if(name_period == "month"){
+    block2 <- minimal_block222(n_periods =  n_periods, vctr_rep1stLetterCols = vctr_rep1stLetterCols, 
+                               vctr_rep2ndLetterCols = vctr_rep2ndLetterCols,
+                               str_blockInitLetter = "E")
+    block3 <- minimal_block222(n_periods =  n_periods, vctr_rep1stLetterCols = vctr_rep1stLetterCols, 
+                               vctr_rep2ndLetterCols = vctr_rep2ndLetterCols,
+                               str_blockInitLetter = "I")
+    
+    block <- cbind(block1, block2, block3) %>% as.data.frame()
+    row.names(block) <- paste0("quarter", 1:n_periods)
+    colnames(block) <- c(rep("month1", 4), rep("month2", 4), rep("month3", 4))  
+  }
+  
+  if(name_period == "quarter"){
+    block <- block1
+    row.names(block) <- paste0("quarter", 1:n_periods)
+    colnames(block) <- c("col1", "col2", "col3", "col4")  
+  }
+  
+  block
+}
